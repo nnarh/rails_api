@@ -12,7 +12,7 @@ class AuthorsController < ApplicationController
   # GET /authors/1.json
   def show
     @author = Author.find(params[:id])
-    render json: @author
+    render json: @author, include: ['books']
   end
 
   # GET /authors/new

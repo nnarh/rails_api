@@ -11,6 +11,8 @@ class PublishingHousesController < ApplicationController
   # GET /publishing_houses/1
   # GET /publishing_houses/1.json
   def show
+    @publishing_houses = PublishingHouse.find(params[:id])
+    render json: @publishing_houses
   end
 
   # GET /publishing_houses/new
