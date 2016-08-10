@@ -1,5 +1,5 @@
 class PublishingHousesController < ApplicationController
-  before_action :set_publishing_house, only: [:show, :edit, :update, :destroy]
+  #before_action :set_publishing_house, only: [:new, :create, :show, :edit, :update, :destroy]
 
   # GET /publishing_houses
   # GET /publishing_houses.json

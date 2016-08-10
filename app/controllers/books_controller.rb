@@ -1,5 +1,5 @@
 class BooksController < ApplicationController
-  before_action :set_book, only: [:show, :edit, :update, :destroy]
+  #before_action :set_book, only: [:new, :create, :show, :edit, :update, :destroy]
 
   # GET /books
   # GET /books.json
@@ -11,6 +11,8 @@ class BooksController < ApplicationController
   # GET /books/1
   # GET /books/1.json
   def show
+    @book = Book.find(params[:id])
+    render json: @book
   end
 
   # GET /books/new
@@ -70,6 +72,9 @@ class BooksController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def book_params
-      params.require(:book).permit(:title, :price, :author_id, :publisher_id, :publisher_type)
+      #params = params.require(:book).permit(:title, :price, :author_id, :publisher_id, :publisher_type)
+      result = ActiveModelSerializers::Deserialization.jsonapi_parse(params, polymorphic: [:publisher])
+      result[:publisher_type] = result[:publisher_type].singularize.capitalize
+      result
     end
 end
